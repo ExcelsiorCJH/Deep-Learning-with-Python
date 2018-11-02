@@ -18,3 +18,7 @@
 
 ### Part2. 실전 딥러닝 - Deep learning in practice
 
+
+## 3. 참고자료
+
+- **GitHub** : https://github.com/rickiepark/deep-learning-with-python-notebooks
