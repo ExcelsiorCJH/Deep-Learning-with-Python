@@ -76,6 +76,6 @@
   - 이러한 점진적인 중간 표현이 공동으로 학습된다. 
   
   
-  
+## Welcome to Keras!
  
 ![](./images/keras.jpg)
