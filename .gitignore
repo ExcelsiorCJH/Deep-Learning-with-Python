@@ -214,5 +214,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Pre-trained model dir
+model/
+model/*
 
 # End of https://www.gitignore.io/api/linux,macos,python,windows,jupyternotebook,visualstudiocode
