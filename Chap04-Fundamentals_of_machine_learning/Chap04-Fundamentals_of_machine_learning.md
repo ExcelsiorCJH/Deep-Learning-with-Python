@@ -97,3 +97,115 @@
 
 ### 4.2.1 훈련, 검증, 테스트 셋
 
+- 모델 평가의 핵심은 데이터를 항상 훈련(training), 검증(valid), 테스트(test) 3개의 세트로 나누는 것이다.
+  - 훈련 세트(training set)에서 모델을 훈련하고,
+  - 검증 세트(validation set)에서 모델을 평가한다.
+  - 테스트 세트를 이용해 모델을 테스트 한다.
+- 전체 데이터 셋을 훈련과 테스트 2개만으로 나누지 않는 이유는, 모델을 개발할 때 항상 모델의 설정을 튜닝하기 때문이다.
+  - 예를 들어, 층의 수나 층의 유닛 수를 조정할 수 있다. → 이러한 파라미터를 **하이퍼파라미터**(hyperparameter)라고 한다.
+- 검증 세트에서 모델의 성능을 평가하여 이런 튜닝을 수행한다.
+  - 이러한 튜닝 또한 어떠한 파라미터 공간에서 좋은 설정값을 찾는 **학습**이라 할 수 있다.
+- 검증 세트를 이용해 설정을 튜닝하게 되면, **검증 세트에 오버피팅**될 수 있다.
+  - 이러한 현상은 검증 세트의 모델 성능에 기반하여 모델의 하이퍼파라미터를 조정할 때마다 검증 데이터에 관한 정보가 모델로 새기 때문이다. → **정보 누설**(information leak)
+- 따라서, 모델이 처음 본 데이터인 테스트 세트를 이용하여 모델을 평가한다.
+  - 모델은 간접적으로라도 테스트 세트에 대한 어떠한 정보도 얻어서는 안된다.
+- 데이터를 훈련/검증/테스트 세트로 나누는 대표적인 방법으로는 다음과 같이 세가지 방법이 있다.
+  - 홀드아웃 검증 (hold-out validation)
+  - K-폴드 교차 검증 (K-fold cross-validation)
+  - 셔플링(shuffling)을 사용한 iterated K-fold cross-validation
+
+
+
+#### Simple Hold-Out Validation
+
+- 전체 데이터 셋에서 일정량을 테스트 셋으로 떼어 놓는다.
+- 남은 데이터에서 훈련하고 검증 세트로 평가한다.
+
+
+
+![hold-out-validation](./images/hold-out.PNG)
+
+
+
+- `NumPy`를 이용한 홀드아웃 검증 구현 코드는 다음과 같다.
+
+```python
+import numpy as np
+
+num_validation_samples = 10000
+
+np.random.shuffle(data)  # 데이터를 섞는것이 일반적으로 좋다.
+
+validation_data = data[:num_validation_samples]  # 검증 셋을 만든다.
+training_data = data[num_validation_samples:]  # 훈련 셋을 만든다.
+```
+
+
+
+- `Scikit-learn`을 이용한 홀드아웃 검증 구현은 다음과 같다.
+
+```python
+from sklearn.model_selection import train_test_split
+
+train_dat, test_data, train_labels, test_labels = train_test_split(data, labels, test_size=0.33, random_state=42)
+```
+
+
+
+- 홀드아웃의 단점은 데이터가 적을 때, 검증 세트와 테스트 세트의 샘플이 너무 적어 주어진 전체 데이터를 통계적으로 대표하지 못할 수 있다.
+
+
+
+#### K-Fold Cross Validation
+
+- 데이터를 동일한 크기를 가진 `K`개의 분할로 나눈다.
+- 각 분할 `i`에 대해 남은 `K-1`개의 분할로 모델을 훈련하고 분할 `i`에 대해 모델을 평가한다.
+- 최종 점수는 `K`개의 점수의 평균을 구한다.
+- 모델의 성능이 데이터 분할에 때라 편차가 클 때 유용하다.
+- 모델의 튜닝에 별개의 검증 세트를 사용하게 된다.
+
+![k-fold_cross_validation](./images/k-fold.PNG)
+
+
+
+- K-fold cross validation의 구현 코드는 아래와 같다.
+
+```python
+k = 4
+num_validation_samples = len(data) // k
+
+np.random.shuffle(data)
+
+validation_scores = []
+for fold in range(k):
+    # 검증 데이터 부분을 선택한다.
+    validation_data = data[num_validation_samples * fold : num_validation_samples * (fold + 1)]
+    # 남은 데이터를 훈련 데이터로 사용한다. 
+    # 리스트에서 + 연산자는 두 리스트를 연결한다.
+    training_data = data[:num_validation_samples * fold] + 
+    	data[num+validation_samples * (fold + 1):]
+    
+    model = get_model()  # 훈련되지 않은 새로운 모델을 만든다.
+    model.train(training_data)
+    validation_score = model.evaluate(validation_data)
+    validation_scores.append(validation_score)
+    
+validation_score = np.average(validation_scores)  # 검증 점수: K개의 폴드에 대한 평균
+
+model = get_model()  
+model.train(data)  # 테스트 데이터를 제외한 전체 데이터로 최종 모델을 훈련
+test_score = model.evaluate(test_data)
+```
+
+
+
+- k-fold cross validation은 `scikit-learn`의 `cross_validate()`함수를 이용해 쉽게 구현할 수 있는데, 케라스 모델을 사이킷런과 호환되도록 `KerasClassifier`나 `KerasRegressor` 클래스로 모델을 감싸줘야 한다.
+
+```python
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import cross_validate
+
+model = KerasClassifier(build_fn=get_model, epochs=150, batch_size=128, verbose=0)
+kfold = cross_validate(model, data, labels, cv=4)
+```
+
