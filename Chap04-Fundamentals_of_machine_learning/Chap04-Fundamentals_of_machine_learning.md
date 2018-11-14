@@ -321,5 +321,56 @@ kfold = cross_validate(model, data, labels, cv=4)
   - 파라미터의 수는 층의 수와 각 층의 유닛 수에 의해 결정된다.
   - 딥러닝에서 모델에 있는 학습 파라미터의 수를 모델의 용량(capacity)라고도 한다.
 - 적절한 모델 크기를 찾는 일반적인 작업 흐름은 우선 적은 수의 층과 파라미터로 시작한다. 그런 다음 검증 손실이 감소되기 시작할 때까지 층이나 유닛의 수를 늘려 나간다.
-- 실습은 링크 참고 → [[링크]]() 이동
+- 실습은 링크 참고 → [[링크]](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap04-Fundamentals_of_machine_learning/Chap04-Fundamentals_of_machine_learning.ipynb) 이동
+
+
+
+### 4.4.2 가중치 규제 추가
+
+- **오컴의 면도날**(Occam's razor) : 어떤 것에 대한 두가지의 설명이 있다면 더 적은 가정이 필요한 간단한 설명이 옳을 것이라는 이론
+    - 이러한 이론은 딥러닝 모델에도 적용된다.
+- 복잡한 모델이 간단한 모델보다 과대적합될 가능성이 높다.
+- 간단한 모델은 적은 수의 파라미터를 가진 모델을 말한다.
+- 과대적합을 완화하기 위한 방법은 네트워크의 복잡도에 제한을 두어 가중치가 작은 값을 가지도록 제약을 가하는 것이다.
+    - 가중치를 작게 만든다는 의미는 특정값(outlier 등)의 영향을 적게 받도록 해줌으로써, 결과적으로 일반화에 적합한 특성을 갖게 만드는 것이라 할 수 있다.([[링크]](https://m.blog.naver.com/laonple/220527647084) 참고)
+    - 이러한 제약을 통해 가중치 값의 분포가 더 균일하게 된다.
+- 이를 **가중치 규제**(weight regularization)라고 하며, 네트워크의 손실함수에 큰 가중치에 연관된 비용을 추가하는 데, 두 가지 형태의 비용이 있다.
+    - **L1 규제** : 가중치의 절대값에 비례하는 비용이 추가된다(가중치의 L1 노름). → $\lambda  \mid w \mid$
+    - **L2 규제** : 가중치의 제곱에 비례하는 비용이 추가된다(가중치의 L2 노름). L2 규제는 신경망에서 가중치 감쇠(weight decay)라고도 부른다. → $\frac{1}{2} \lambda w^2$
+    
+- 실습은 링크 참고 → [[링크]](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap04-Fundamentals_of_machine_learning/Chap04-Fundamentals_of_machine_learning.ipynb) 이동
+
+
+### 4.4.3 드롭아웃 (Dropout)
+
+- **드롭아웃(dropout)** 은 신경망에서 사용되는 규제 기법 중에서 가장 효과적이고 널리 사용되는 방법 중 하나다.
+- 드롭아웃의 핵심 아이디어는 층의 출력값에 노이즈(랜덤하게 끄는것)를 추가하여 중요하지 않은 우연한 패턴을 네트워크가 학습하지 못하게 하는 것이다.
+- 네트워크 층에 드롭아웃을 적용하면 **훈련하는 동안** 랜덤하게 층의 일부 출력 특성(유닛)을 제외시킨다(0으로 만든다).
+
+![](./images/dropout.png)
+
+- 드롭아웃 비율(`p`)은 일반적으로 `0.2 ~ 0.5`로 설정한다.
+- 테스트 단계에서는 어떠한 유닛도 드롭아웃 되지 않는다.
+    - 그 대신 층의 출력을 드롭아웃 비율(`p`)에 비례하여 줄여준다. → `layer_output *= p`
+    - 그 이유는 훈련할 때보다 더 많은 유닛이 활성화되기 때문이다. → keras에서는 자동으로 계산해줌
+- 케라스에서는 층의 출력 바로 뒤에 `Dropout`층을 추가하여 네트워크에 드롭아웃을 적용할 수 있다.
+
+```python
+from keras import layers
+
+model.add(layers.Dropout(0.5))
+```
+
+- 실습은 링크 참고 → [[링크]](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap04-Fundamentals_of_machine_learning/Chap04-Fundamentals_of_machine_learning.ipynb) 이동
+
+
+### 4.4.4 정리
+
+
+신경망에서 과대적합을 방지하기 위해 가장 널리 사용하는 방법은 다음과 같다.
+
+- 훈련 데이터를 더 모은다.
+- 네트워크 용량을 감소 시킨다(파라미터 수를 줄인다).
+- 가중치 규제($l1, l2$)를 추가한다.
+- 드롭아웃을 추가한다.
 
