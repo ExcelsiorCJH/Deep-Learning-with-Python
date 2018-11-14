@@ -341,13 +341,16 @@ kfold = cross_validate(model, data, labels, cv=4)
 - 실습은 링크 참고 → [[링크]](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap04-Fundamentals_of_machine_learning/Chap04-Fundamentals_of_machine_learning.ipynb) 이동
 
 
+
 ### 4.4.3 드롭아웃 (Dropout)
 
 - **드롭아웃(dropout)** 은 신경망에서 사용되는 규제 기법 중에서 가장 효과적이고 널리 사용되는 방법 중 하나다.
 - 드롭아웃의 핵심 아이디어는 층의 출력값에 노이즈(랜덤하게 끄는것)를 추가하여 중요하지 않은 우연한 패턴을 네트워크가 학습하지 못하게 하는 것이다.
 - 네트워크 층에 드롭아웃을 적용하면 **훈련하는 동안** 랜덤하게 층의 일부 출력 특성(유닛)을 제외시킨다(0으로 만든다).
 
-![](./images/dropout.png)
+<img src="./images/dropout.png" height="60%" width="60%" />
+
+
 
 - 드롭아웃 비율(`p`)은 일반적으로 `0.2 ~ 0.5`로 설정한다.
 - 테스트 단계에서는 어떠한 유닛도 드롭아웃 되지 않는다.
@@ -364,6 +367,7 @@ model.add(layers.Dropout(0.5))
 - 실습은 링크 참고 → [[링크]](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap04-Fundamentals_of_machine_learning/Chap04-Fundamentals_of_machine_learning.ipynb) 이동
 
 
+
 ### 4.4.4 정리
 
 
@@ -374,3 +378,33 @@ model.add(layers.Dropout(0.5))
 - 가중치 규제($l1, l2$)를 추가한다.
 - 드롭아웃을 추가한다.
 
+
+
+
+
+## 4.5 보편적인 머신러닝 작업 흐름
+
+
+
+1. 문제 정의와 데이터 수집
+2. 성공 지표 선택
+   - 성공의 지표가 모델이 최적화할 손실 함수를 선택하는 기준이 된다.
+   - 클래스가 분포가 균일한 분류 문제에서는 정확도와 [ROC AUC](https://github.com/ExcelsiorCJH/Hands-On-ML/blob/master/Chap03-Classification/Chap03-Classification.ipynb)가 일반적인 지표다.
+   - 랭킹 문제나 다중 레이블 문제에는 **평균 정밀도**(Mean Average Precision)를 사용할 수 있다.
+3. 평가 방법 선택
+   - Hold-out 검증 세트 분리 : 데이터가 많을 때 사용
+   - K-fold cross-valication : 홀드아웃 검증을 사용하기에 샘플의 수가 적을 때 사용
+   - Iterated K-fold validation : 데이터가 적고 매우 정확한 모델 평가가 필요할 때 사용
+4. 데이터 준비
+   - 입력 데이터와 타겟 데이터 텐서를 준비한다.
+5. 기본(baseline)보다 나은 모델 개발하기
+   - 아주 단순한 모델보다 나은 수준의 모델을 개발한다.
+   - 마지막 층의 활성화 함수, 손실함수, 최적화 설정 등
+6. 과대적합 모델 만들기
+   - 적절한 모델을 설정하기 위해 과대적합 모델을 만든 뒤 과대적합 모델 보다 작은 모델을 만들기 위해 비교한다.
+7. 모델 규제와 하이퍼파라미터 튜닝
+   - 드롭아웃 추가
+   - 층을 추가하거나 제거해서 다른 구조를 시도
+   - L1이나 L2 규제를 추가
+   - 하이퍼파라미터(learning rate, 층의 유닛 수 등) 조정
+   - 특성 공학 시도
