@@ -29,9 +29,9 @@
 ### Part2. 실전 딥러닝 - Deep learning in practice
 
 - Chap05 - 컴퓨터 비전을 위한 딥러닝
-    - 5.1 합성곱 신경망 소개 [설명](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.1-convnet_description.ipynb), [실습](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.1-introduction-to-convnets.ipynb)
+    - 5.1 합성곱 신경망 소개 [[설명]](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.1-convnet_description.ipynb), [[실습]](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.1-introduction-to-convnets.ipynb)
     - 5.2 [소규모 데이터셋에서 컨브넷 훈련하기](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.2-using-convnets-with-small-datasets.ipynb)
-    -5.3 [사전 훈련된 컨브넷 사용하기](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.3-using-a-pretrained-convnet.ipynb)
+    - 5.3 [사전 훈련된 컨브넷 사용하기](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.3-using-a-pretrained-convnet.ipynb)
     - 5.4 [컨브넷 학습 시각화](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.4-visualizing-what-convnets-learn.ipynb)
 
 ## 3. 참고자료
