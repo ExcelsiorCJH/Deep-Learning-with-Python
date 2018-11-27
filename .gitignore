@@ -218,4 +218,8 @@ $RECYCLE.BIN/
 model/
 model/*
 
+# GloVe dataset
+datasets/glove/
+datasets/glove/*
+
 # End of https://www.gitignore.io/api/linux,macos,python,windows,jupyternotebook,visualstudiocode
