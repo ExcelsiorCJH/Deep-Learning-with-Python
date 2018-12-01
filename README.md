@@ -33,6 +33,11 @@
     - 5.2 [소규모 데이터셋에서 컨브넷 훈련하기](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.2-using-convnets-with-small-datasets.ipynb)
     - 5.3 [사전 훈련된 컨브넷 사용하기](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.3-using-a-pretrained-convnet.ipynb)
     - 5.4 [컨브넷 학습 시각화](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap05-Deep_learning_for_computer_vision/5.4-visualizing-what-convnets-learn.ipynb)
+- Chap06 - 텍스트와 시퀀스를 위한 딥러닝
+    - 6.1 [텍스트 데이터 다루기](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap06-Deep_learning_for_text_and_sequences/6.1-working-with-text-data.ipynb)
+    - 6.2 [순환 신경망 이해하기](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap06-Deep_learning_for_text_and_sequences/6.2-understanding-recurrent-neural-networks.ipynb)
+    - 6.3 [순환 신경망의 고급 사용법](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap06-Deep_learning_for_text_and_sequences/6.3-advanced-usage-of-recurrent-neurl-networks.ipynb)
+    - 6.4 [컨브넷을 사용한 시퀀스 처리](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap06-Deep_learning_for_text_and_sequences/6.4-sequence-processing-with-convnets.ipynb)
 
 ## 3. 참고자료
 
