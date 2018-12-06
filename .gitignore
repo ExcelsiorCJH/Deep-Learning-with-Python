@@ -218,6 +218,11 @@ $RECYCLE.BIN/
 model/
 model/*
 
+# npz and logs
+*.npz
+logs/
+logs/*
+
 # GloVe dataset
 datasets/glove/
 datasets/glove/*
