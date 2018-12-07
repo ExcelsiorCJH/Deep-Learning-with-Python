@@ -38,6 +38,11 @@
     - 6.2 [순환 신경망 이해하기](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap06-Deep_learning_for_text_and_sequences/6.2-understanding-recurrent-neural-networks.ipynb)
     - 6.3 [순환 신경망의 고급 사용법](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap06-Deep_learning_for_text_and_sequences/6.3-advanced-usage-of-recurrent-neurl-networks.ipynb)
     - 6.4 [컨브넷을 사용한 시퀀스 처리](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap06-Deep_learning_for_text_and_sequences/6.4-sequence-processing-with-convnets.ipynb)
+- Chap07 - 딥러닝을 위한 고급 도구
+    - 7.1 [Sequential 모델을 넘어서: 케라스의 함수형 API](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap07-Advanced_deep-learning_best_practices/7.1-going_beyond_the_sequential_model-keras_function_api.ipynb)
+    - 7.2 [케라스의 콜백과 텐서보드를 사용한 딥러닝 모델 검사와 모니터링](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap07-Advanced_deep-learning_best_practices/7.2-keras_callbacks-and-tensorboard.ipynb)
+    - 7.3 [모델의 성능을 최대로 끌어올리기](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap07-Advanced_deep-learning_best_practices/7.3-getting-the-most-out-of-your-models.ipynb)
+        - [Hyperas 예제](https://github.com/ExcelsiorCJH/Deep-Learning-with-Python/blob/master/Chap07-Advanced_deep-learning_best_practices/hyperas-test.ipynb)
 
 ## 3. 참고자료
 
