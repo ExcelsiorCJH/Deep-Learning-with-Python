@@ -227,4 +227,10 @@ logs/*
 datasets/glove/
 datasets/glove/*
 
+# chap08
+models/
+models/*
+gan_images/
+gan_images/*
+
 # End of https://www.gitignore.io/api/linux,macos,python,windows,jupyternotebook,visualstudiocode
